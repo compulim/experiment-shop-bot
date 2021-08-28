@@ -22,7 +22,7 @@ class EchoBot extends ActivityHandler {
 
       for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
         if (membersAdded[cnt].id !== context.activity.recipient.id) {
-          await context.sendActivity(
+          await context.sendActivities([
             MessageFactory.carousel(
               [
                 CardFactory.heroCard(
@@ -31,7 +31,10 @@ class EchoBot extends ActivityHandler {
                     'https://compass-ssl.xbox.com/assets/f7/29/f72981fb-9f8d-4b66-8da7-355e6f48efce.jpg?n=999666_Content-Placement-0_Accessory-hub_740x417.jpg'
                   ],
                   [],
-                  { subtitle: '$179.99' }
+                  {
+                    subtitle: '$179.99',
+                    text: 'Adjustable-tension thumbsticks I Shorter hair trigger locks I Wrap-around rubberized grip I Re-engineered components'
+                  }
                 ),
                 CardFactory.heroCard(
                   'Xbox Adaptive Controller',
@@ -39,12 +42,16 @@ class EchoBot extends ActivityHandler {
                     'https://compass-ssl.xbox.com/assets/01/d0/01d0d6c7-cda9-41c2-96d3-55ceccc2486c.jpg?n=Accessory-Hub_Content-Placement-0_94_740x417.jpg'
                   ],
                   [],
-                  { subtitle: '$99.99' }
+                  {
+                    subtitle: '$99.99',
+                    text: 'Designed primarily to meet the needs of gamers with limited mobility, the Xbox Adaptive Controller is a unified hub for devices that helps make gaming more accessible.'
+                  }
                 )
               ],
               'Here is your shopping cart.'
-            )
-          );
+            ),
+            MessageFactory.suggestedActions(['Checkout'])
+          ]);
         }
       }
 
