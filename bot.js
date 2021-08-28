@@ -26,9 +26,9 @@ class EchoBot extends ActivityHandler {
             MessageFactory.carousel(
               [
                 CardFactory.heroCard(
-                  'Xbox Seris X',
+                  'Xbox Series X',
                   [
-                    'https://compass-ssl.xbox.com/assets/d3/4b/d34ba4c7-846f-47d3-8cda-9565515060d1.png?n=XBX-CMP-A-Console_Large-D.png'
+                    'https://compass-ssl.surface.com/assets/9e/cc/9eccdb3c-e965-4ab7-97d2-651c5f5a7fbe.jpg?n=Consoles-Hub_Content-Placement_Hub-SX_788x444.jpg'
                   ],
                   [],
                   {
