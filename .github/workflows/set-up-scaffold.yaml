@@ -1,0 +1,67 @@
+name: Set up scaffold
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo-owner:
+        description: Samples repo owner
+        default: microsoft
+        required: true
+
+      repo-name:
+        description: Samples repo owner
+        default: BotBuilder-Samples
+        required: true
+
+      repo-branch:
+        description: Samples repo branch
+        default: main
+        required: true
+
+      folder:
+        description: Samples folder
+        default: samples/javascript_nodejs/02.echo-bot
+        required: true
+
+      target-branch:
+        description: Target new branch
+        default: main
+        required: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure user profile
+        run: |
+          git config user.email "${{ format('@{0}', github.actor) }}"
+          git config user.name "${{ format('@{0}', github.actor) }}"
+
+      - name: Create new branch "${{ github.event.inputs.target-branch }}"
+        # Only create the new branch if we are not replacing ourselves.
+        if: ${{ format('refs/heads/{0}', github.event.inputs.target-branch) != github.ref }}
+        run: git checkout -b ${{ github.event.inputs.target-branch }}
+
+      - name: Clone repository
+        run: |
+          curl -Lo /tmp/main.zip https://github.com/${{ github.event.inputs.repo-owner }}/${{ github.event.inputs.repo-name }}/archive/refs/heads/${{ github.event.inputs.repo-branch }}.zip
+          unzip /tmp/main.zip */${{ github.event.inputs.folder }}/* -d /tmp/samples-repo/
+          cp -r /tmp/samples-repo/${{ github.event.inputs.repo-name }}-${{ github.event.inputs.repo-branch }}/${{ github.event.inputs.folder }}/* .
+
+      # Run "npm install" to generate the package-lock.json
+      - name: Generate package-lock.json with audit fix
+        run: |
+          npm install
+          npm audit fix
+
+      - name: Set up GitHub Actions
+        run: rm .github/workflows/set-up-scaffold.yaml
+
+      - name: Commit and push
+        run: |
+          git add --all
+          git commit --message "Initial scaffold"
+          git push --set-upstream origin ${{ github.event.inputs.target-branch }}
