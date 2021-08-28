@@ -26,6 +26,17 @@ class EchoBot extends ActivityHandler {
             MessageFactory.carousel(
               [
                 CardFactory.heroCard(
+                  'Xbox Seris X',
+                  [
+                    'https://compass-ssl.xbox.com/assets/d3/4b/d34ba4c7-846f-47d3-8cda-9565515060d1.png?n=XBX-CMP-A-Console_Large-D.png'
+                  ],
+                  [],
+                  {
+                    subtitle: '$499.99',
+                    text: 'New generation console. New generation games. Embark on new adventures the way they’re meant to be experienced on the Xbox Series X.'
+                  }
+                ),
+                CardFactory.heroCard(
                   'Xbox Elite Wireless Controller Series 2',
                   [
                     'https://compass-ssl.xbox.com/assets/f7/29/f72981fb-9f8d-4b66-8da7-355e6f48efce.jpg?n=999666_Content-Placement-0_Accessory-hub_740x417.jpg'
@@ -48,7 +59,7 @@ class EchoBot extends ActivityHandler {
                   }
                 )
               ],
-              'Here is your shopping cart.'
+              'You have 2 items in your shopping cart.'
             ),
             MessageFactory.suggestedActions(['Checkout'], 'You can say "checkout" to start checkout process.')
           ]);
