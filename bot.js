@@ -50,7 +50,7 @@ class EchoBot extends ActivityHandler {
               ],
               'Here is your shopping cart.'
             ),
-            MessageFactory.suggestedActions(['Checkout'])
+            MessageFactory.suggestedActions(['Checkout'], 'You can say "checkout" to start checkout process.')
           ]);
         }
       }
