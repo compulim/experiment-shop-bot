@@ -9,9 +9,51 @@ class EchoBot extends ActivityHandler {
 
     // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     this.onMessage(async (context, next) => {
-      const replyText = `Echo: ${context.activity.text}`;
+      const text = context?.activity?.text;
 
-      await context.sendActivity(MessageFactory.text(replyText, replyText));
+      if (/(^|\s)checkout(\s|$)/iu.test(text)) {
+        await context.sendActivity(
+          MessageFactory.attachment(
+            CardFactory.adaptiveCard({
+              type: 'AdaptiveCard',
+              $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+              version: '1.3',
+              body: [
+                {
+                  type: 'Input.Text',
+                  id: 'ReceipientName',
+                  label: 'Receipient name'
+                },
+                {
+                  type: 'Input.Text',
+                  id: 'StreetAddress1',
+                  label: 'Street address 1'
+                },
+                {
+                  type: 'Input.Text',
+                  id: 'StreetAddress2',
+                  label: 'Street address 2'
+                },
+                {
+                  type: 'Input.Text',
+                  id: 'City',
+                  label: 'City'
+                },
+                {
+                  type: 'Input.Text',
+                  id: 'State',
+                  label: 'State'
+                }
+              ]
+            }),
+            'Please enter your mailing address.'
+          )
+        );
+      } else {
+        const replyText = `Echo: ${text}`;
+
+        await context.sendActivity(MessageFactory.text(replyText, replyText));
+      }
 
       // By calling next() you ensure that the next BotHandler is run.
       await next();
@@ -59,7 +101,7 @@ class EchoBot extends ActivityHandler {
                   }
                 )
               ],
-              'You have 2 items in your shopping cart.'
+              'You have 3 items in your shopping cart.'
             ),
             MessageFactory.suggestedActions(['Checkout'], 'You can say "checkout" to start checkout process.')
           ]);
