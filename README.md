@@ -1,29 +1,73 @@
-# template-echo-bot
+# echo-bot
 
-This repo is for quickly set up an Azure bot with Node.js Web App. It will clone the [Bot Builder Samples](https://github.com/microsoft/BotBuilder-Samples/) and add GitHub Action to deploy your bot.
+Bot Framework v4 echo bot sample
 
-## Why this is needed?
+This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
 
-[Bot Builder Samples](https://github.com/microsoft/BotBuilder-Samples/) repository contains great samples. But it is a mono-repository and need extra tweaks to deploy code using GitHub Actions.
+## Prerequisites
 
-Using GitHub Actions, you can easily modify your bot code and re-deploy automatically.
+- [Node.js](https://nodejs.org) version 10.14 or higher
 
-With this template repository, it will simplify deploying a bot from samples to your environment:
+    ```bash
+    # determine node version
+    node --version
+    ```
 
-- No need to manual copying sample bot from its own folder to a new repository
-- No need to write your own GitHub workflow for deploying to Azure Web App
-- No need to patch the bot to support Azure Web App ZipDeploy
-   - ZipDeploy is a super-fast deployment for Azure Web App, it only take 10 seconds to deploy a bot
-   - No need to write your own `web.config` to support ZipDeploy
+## To try this sample
 
-## Steps
+- Clone the repository
 
-1. Set up your Web App
-   1. (Optional) Set the application settings `WEBSITE_RUN_FROM_PACKAGE=1` will speed up deployment significantly
-   1. Download the publish profile
-1. [Fork this repo via the "Use this template" button](https://github.com/compulim/template-echo-bot/generate)
-1. [Add a new secret](../../settings/secrets/actions/new) named `PUBLISH_PROFILE`
-   - Paste the content of the publish profile file you downloaded from step 1 into the value field
-1. [Navigate to the scaffold workflow](../../actions/workflows/set-up-scaffold.yaml)
-1. Click "Run workflow" to set up the scaffold
-1. [Modify `bot.js` to trigger the first deployment](../../edit/main/bot.js)
+    ```bash
+    git clone https://github.com/microsoft/botbuilder-samples.git
+    ```
+
+- In a terminal, navigate to `samples/javascript_nodejs/02.echo-bot`
+
+    ```bash
+    cd samples/javascript_nodejs/02.echo-bot
+    ```
+
+- Install modules
+
+    ```bash
+    npm install
+    ```
+
+- Start the bot
+
+    ```bash
+    npm start
+    ```
+
+## Testing the bot using Bot Framework Emulator
+
+[Bot Framework Emulator](https://github.com/microsoft/botframework-emulator) is a desktop application that allows bot developers to test and debug their bots on localhost or running remotely through a tunnel.
+
+- Install the latest Bot Framework Emulator from [here](https://github.com/Microsoft/BotFramework-Emulator/releases)
+
+### Connect to the bot using Bot Framework Emulator
+
+- Launch Bot Framework Emulator
+- File -> Open Bot
+- Enter a Bot URL of `http://localhost:3978/api/messages`
+
+## Interacting with the bot
+
+Enter text in the emulator.  The text will be echoed back by the bot.
+
+## Deploy the bot to Azure
+
+To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
+
+## Further reading
+
+- [Bot Framework Documentation](https://docs.botframework.com)
+- [Bot Basics](https://docs.microsoft.com/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0)
+- [Activity processing](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-activity-processing?view=azure-bot-service-4.0)
+- [Azure Bot Service Introduction](https://docs.microsoft.com/azure/bot-service/bot-service-overview-introduction?view=azure-bot-service-4.0)
+- [Azure Bot Service Documentation](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)
+- [Azure Portal](https://portal.azure.com)
+- [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
+- [Restify](https://www.npmjs.com/package/restify)
+- [dotenv](https://www.npmjs.com/package/dotenv)
