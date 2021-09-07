@@ -109,6 +109,10 @@ class EchoBot extends ActivityHandler {
             'Please enter your mailing address.'
           )
         );
+      } else if (context?.activity?.value) {
+        const replyText = `Thanks for shopping with us.`;
+
+        await context.sendActivity(MessageFactory.text(replyText, replyText));
       } else {
         const replyText = `Echo: ${text}`;
 
@@ -125,6 +129,7 @@ class EchoBot extends ActivityHandler {
       for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
         if (membersAdded[cnt].id !== context.activity.recipient.id) {
           await context.sendActivities([
+            MessageFactory.text('Welcome to Contoso shop.', 'Welcome to Contoso shop.'),
             MessageFactory.carousel(
               [
                 CardFactory.heroCard(
