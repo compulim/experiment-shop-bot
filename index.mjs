@@ -23,7 +23,7 @@ import { BotFrameworkAdapter } from 'botbuilder';
 
 // This bot's main dialog.
 // const { EchoBot } = require('./bot');
-import { EchoBot } from './bot.js';
+import { EchoBot } from './bot.mjs';
 
 // Create HTTP server
 const server = restify.createServer();
