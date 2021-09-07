@@ -102,7 +102,7 @@ class EchoBot extends ActivityHandler {
               actions: [
                 {
                   type: 'Action.Submit',
-                  title: 'OK'
+                  title: 'Place an order'
                 }
               ]
             }),
