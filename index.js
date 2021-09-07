@@ -2,28 +2,32 @@
 // Licensed under the MIT License.
 
 // const path = require('path');
+const { join } = require('path');
 
-// const dotenv = require('dotenv');
-import 'dotenv/config';
+require('dotenv/config');
+// import 'dotenv/config';
 // Import required bot configuration.
 // const ENV_FILE = path.join(__dirname, '.env');
 // dotenv.config({ path: ENV_FILE });
 
-// const restify = require('restify');
-import restify from 'restify';
+const restify = require('restify');
+// import restify from 'restify';
 
-import fetch from 'node-fetch';
-import { promises as fs } from 'node:fs';
-import random from 'math-random';
+const fetch = require('node-fetch');
+// import fetch from 'node-fetch';
+const { promises: fs } = require('node:fs');
+// import { promises as fs } from 'node:fs';
+const random = require('math-random');
+// import random from 'math-random';
 
 // Import required bot services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bot.
-// const { BotFrameworkAdapter } = require('botbuilder');
-import { BotFrameworkAdapter } from 'botbuilder';
+const { BotFrameworkAdapter } = require('botbuilder');
+// import { BotFrameworkAdapter } from 'botbuilder';
 
 // This bot's main dialog.
-// const { EchoBot } = require('./bot');
-import { EchoBot } from './bot.mjs';
+const { EchoBot } = require('./bot');
+// import { EchoBot } from './bot.js';
 
 // Create HTTP server
 const server = restify.createServer();
@@ -138,5 +142,6 @@ server.post('/api/token', async (req, res) => {
 });
 
 server.get('/', async (req, res) => {
-  res.sendRaw(200, await fs.readFile(new URL('./public/index.html', import.meta.url)), { 'content-type': 'text/html' });
+  res.sendRaw(200, await fs.readFile(join(__dirname, './public/index.html')), { 'content-type': 'text/html' });
+  // res.sendRaw(200, await fs.readFile(new URL('./public/index.html', import.meta.url)), { 'content-type': 'text/html' });
 });

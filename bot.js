@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-// const { ActivityHandler, CardFactory, MessageFactory } = require('botbuilder');
-import { ActivityHandler, CardFactory, MessageFactory } from 'botbuilder';
+const { ActivityHandler, CardFactory, MessageFactory } = require('botbuilder');
+// import { ActivityHandler, CardFactory, MessageFactory } from 'botbuilder';
 
 class EchoBot extends ActivityHandler {
   constructor() {
@@ -174,5 +174,5 @@ class EchoBot extends ActivityHandler {
   }
 }
 
-// module.exports.EchoBot = EchoBot;
-export { EchoBot };
+module.exports.EchoBot = EchoBot;
+// export { EchoBot };

@@ -4,10 +4,10 @@
   "description": "Bot Builder v4 echo bot sample",
   "author": "Microsoft",
   "license": "MIT",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./index.mjs",
-    "watch": "nodemon ./index.mjs",
+    "start": "node ./index.js",
+    "watch": "nodemon ./index.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,7 @@
     "botbuilder": "~4.14.0",
     "dotenv": "^8.2.0",
     "math-random": "^2.0.1",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "^2.6.2",
     "restify": "~8.5.1"
   },
   "devDependencies": {
