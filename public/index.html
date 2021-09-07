@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Shop Bot</title>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <style type="text/css">
+      body,
+      html {
+        height: 100%;
+      }
+
+      body {
+        background-color: #f7f7f7;
+        margin: 0;
+      }
+
+      #webchat {
+        background: White;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        margin: auto;
+        max-width: 720px;
+        min-width: 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="webchat"></div>
+    <script>
+      'use strict';
+
+      (async function () {
+        const res = await fetch('/api/token', { method: 'POST' });
+
+        const { token } = await res.json();
+
+        WebChat.renderWebChat({ directLine: WebChat.createDirectLine({ token }) }, document.getElementById('webchat'));
+      })().catch(err => console.error(err));
+    </script>
+  </body>
+</html>

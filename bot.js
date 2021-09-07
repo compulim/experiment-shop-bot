@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ActivityHandler, CardFactory, MessageFactory } = require('botbuilder');
+// const { ActivityHandler, CardFactory, MessageFactory } = require('botbuilder');
+import { ActivityHandler, CardFactory, MessageFactory } from 'botbuilder';
 
 class EchoBot extends ActivityHandler {
   constructor() {
@@ -97,6 +98,12 @@ class EchoBot extends ActivityHandler {
                     { title: 'Wyoming', value: 'WY' }
                   ]
                 }
+              ],
+              actions: [
+                {
+                  type: 'Action.Submit',
+                  title: 'OK'
+                }
               ]
             }),
             'Please enter your mailing address.'
@@ -156,7 +163,7 @@ class EchoBot extends ActivityHandler {
               ],
               'You have 3 items in your shopping cart.'
             ),
-            MessageFactory.suggestedActions(['Checkout'], 'You can say "checkout" to start checkout process.')
+            MessageFactory.suggestedActions(['Checkout'], 'You can type "checkout" to start checkout process.')
           ]);
         }
       }
@@ -167,4 +174,5 @@ class EchoBot extends ActivityHandler {
   }
 }
 
-module.exports.EchoBot = EchoBot;
+// module.exports.EchoBot = EchoBot;
+export { EchoBot };
