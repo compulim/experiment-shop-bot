@@ -15,7 +15,7 @@ const restify = require('restify');
 
 const fetch = require('node-fetch');
 // import fetch from 'node-fetch';
-const { promises: fs } = require('node:fs');
+const { promises: fs } = require('fs');
 // import { promises as fs } from 'node:fs';
 const random = require('math-random');
 // import random from 'math-random';
